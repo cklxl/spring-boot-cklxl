@@ -20,8 +20,8 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-boot-cklxl-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Spring Boot cklxl parent</name>
-    <description>Spring Boot cklxl parent</description>
+    <name>Spring Boot CkLxl Parent</name>
+    <description>Spring Boot CkLxl Parent</description>
     <parent>
         <groupId>com.cklxl.boot</groupId>
         <artifactId>spring-boot-cklxl-dependencies</artifactId>

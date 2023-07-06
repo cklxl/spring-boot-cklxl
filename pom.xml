@@ -22,12 +22,12 @@
     <artifactId>spring-boot-cklxl</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-    <name>Spring Boot cklxl</name>
-    <description>Spring Boot cklxl</description>
+    <name>Spring Boot CkLxl</name>
+    <description>Spring Boot CkLxl</description>
     <url>https://github.com/codecentric/spring-boot-admin/</url>
     <properties>
         <revision>0.0.1</revision>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <resource.delimiter>@</resource.delimiter>
@@ -54,7 +54,7 @@
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
-        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.6.0</maven-dependency-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -66,7 +66,7 @@
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.13.3</frontend-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <asciidoctor-maven-plugin.version>2.2.1</asciidoctor-maven-plugin.version>
         <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
@@ -82,6 +82,7 @@
         <module>spring-boot-cklxl-parent</module>
         <module>spring-boot-cklxl-dependencies</module>
         <module>spring-boot-cklxl-starter-easyexcel</module>
+        <module>spring-boot-cklxl-starter-web</module>
     </modules>
     <organization>
         <name>cklxl</name>
