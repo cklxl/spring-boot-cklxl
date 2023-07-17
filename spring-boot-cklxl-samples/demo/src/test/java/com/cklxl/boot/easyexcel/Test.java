@@ -5,12 +5,8 @@ import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.changetype.map.KeyValueChange;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.util.Map.Entry;
-import static java.util.Map.of;
 
 public class Test {
     public static void main(String[] args) {
@@ -33,12 +29,12 @@ public class Test {
         var map1 = new HashMap<String, String>();
         map1.put("姓名", "张三");
         map1.put("年龄", "20");
-        map1.put( "性别", "男");
+        map1.put("性别", "男");
         var map2 = new HashMap<String, String>();
 //        map2.put("姓名", "李四");
         map2.put("姓名", null);
         map2.put("年龄", "21");
-        map2.put( "性别", "男");
+        map2.put("性别", "男");
         Javers javers = JaversBuilder.javers().build();
         var diff = javers.compare(map1, map2);
         diff.getChanges().forEach(change -> {
