@@ -3,3 +3,37 @@ server:
 spring:
   application:
     name: demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    druid:
+      filters: stat,wall,slf4j
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      maxPoolPreparedStatementPerConnectionSize: 20
+      minEvictableIdleTimeMillis: 300000
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      time-between-eviction-runs-millis: 60000
+mybatis-plus:
+  configuration:
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+  global-config:
+    banner: false
+    db-config:
+      id-type: ASSIGN_ID
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/**/entity/*.xml
+  typeAliasesPackage: com.cklxl.*.*.entity
+mybatis-plus-join:
+  banner: false
