@@ -83,6 +83,7 @@
         <module>spring-boot-cklxl-dependencies</module>
         <module>spring-boot-cklxl-starter-easyexcel</module>
         <module>spring-boot-cklxl-starter-web</module>
+        <module>spring-boot-cklxl-samples/demo</module>
     </modules>
     <organization>
         <name>cklxl</name>
