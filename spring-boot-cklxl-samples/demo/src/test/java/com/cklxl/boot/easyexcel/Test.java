@@ -1,16 +1,20 @@
 package com.cklxl.boot.easyexcel;
 
 import com.alibaba.excel.EasyExcel;
+import com.cklxl.filter.Filter;
+import com.cklxl.filter.enums.FldOperation;
+import com.cklxl.filter.enums.FldType;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.changetype.map.KeyValueChange;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        compareMap();
+        test();
     }
 
     public static void excelImport() {
@@ -53,5 +57,99 @@ public class Test {
         String[] split1 = split[0].split("'");
         String[] split2 = split[1].split("'");
         return split1[1] + ": " + "'" + split1[3] + "'" + " -> " + "'" + split2[3] + "'";
+    }
+
+    public static void test() {
+        List<Filter> filters = getFilters();
+        Filter filter3 = new Filter();
+        filter3.setIsAnd(Boolean.TRUE);
+        filter3.setFldType(FldType.GROUP);
+        filter3.setChildren(getFilters());
+        filters.add(filter3);
+
+        Filter filter4 = new Filter();
+        filter4.setIsAnd(Boolean.TRUE);
+        filter4.setFldType(FldType.GROUP);
+        filter4.setChildren(getFilters2());
+        filters.add(filter4);
+        // 将过滤器转换为sql语句中的where条件
+        String where = getWhere(filters);
+        System.out.println(where);
+    }
+
+    private static List<Filter> getFilters() {
+        List<Filter> filters = new ArrayList<>();
+        Filter filter1 = new Filter();
+        filter1.setIsAnd(Boolean.FALSE);
+        filter1.setFldType(FldType.SINGLE);
+        filter1.setFldName("name");
+        filter1.setFldOperation(FldOperation.EQ);
+        filter1.setFldValue("张三");
+        filters.add(filter1);
+        Filter filter2 = new Filter();
+        filter2.setIsAnd(Boolean.TRUE);
+        filter2.setFldType(FldType.SINGLE);
+        filter2.setFldName("gender");
+        filter2.setFldOperation(FldOperation.GT);
+        filter2.setFldValue("20");
+        filters.add(filter2);
+        return filters;
+    }
+
+    private static List<Filter> getFilters2() {
+        List<Filter> filters = new ArrayList<>();
+        Filter filter1 = new Filter();
+        filter1.setIsAnd(Boolean.FALSE);
+        filter1.setFldType(FldType.SINGLE);
+        filter1.setFldName("name");
+        filter1.setFldOperation(FldOperation.EQ);
+        filter1.setFldValue("张三");
+        filters.add(filter1);
+        Filter filter2 = new Filter();
+        filter2.setIsAnd(Boolean.TRUE);
+        filter2.setFldType(FldType.SINGLE);
+        filter2.setFldName("gender");
+        filter2.setFldOperation(FldOperation.GT);
+        filter2.setFldValue("20");
+        filters.add(filter2);
+
+        Filter filter3 = new Filter();
+        filter3.setIsAnd(Boolean.TRUE);
+        filter3.setFldType(FldType.GROUP);
+        filter3.setChildren(getFilters());
+        filters.add(filter3);
+        return filters;
+    }
+
+    public static String getWhere(List<Filter> filters) {
+        StringBuilder where = new StringBuilder();
+        for (Filter filter : filters) {
+            if (filter.getIsAnd()) {
+                where.append(" and ");
+            } else {
+                where.append(" or ");
+            }
+            if (filter.getFldType() == FldType.SINGLE) {
+                where.append(filter.getFldName());
+                where.append(" ");
+                where.append(filter.getFldOperation().getValue());
+                where.append(" ");
+                // 需要基于类型转换
+                where.append("'").append(filter.getFldValue()).append("'");
+                continue;
+            }
+            where.append("(");
+            where.append(getWhere(filter.getChildren()));
+            where.append(")");
+        }
+        if (where.length() > 0) {
+            if (where.indexOf(" and ") == 0) {
+                where.delete(0, 5);
+            } else if (where.indexOf(" or ") == 0) {
+                where.delete(0, 4);
+            }
+        }
+//        where.insert(0, "where ");
+        return where.toString();
     }
 }
