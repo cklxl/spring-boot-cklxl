@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cklxl.dynamic.mapper.DynamicMapper">
+
+    <insert id="save">
+        insert into ${t.tableName}
+        <foreach collection="t.columns" item="column" index="index" separator="," open="(" close=")">
+            ${column}
+        </foreach>
+        values
+        <foreach collection="t.values" item="value" index="index" separator="," open="(" close=")">
+            #{value}
+        </foreach>
+    </insert>
+
+    <insert id="saveBatch">
+        insert into ${t.tableName}
+        <foreach collection="t.columns" item="column" index="index" separator="," open="(" close=")">
+            ${column}
+        </foreach>
+        values
+        <foreach collection="t.batchValues" item="values" index="index" separator=",">
+            <foreach collection="values" item="value" index="index" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </foreach>
+    </insert>
+
+    <update id="update">
+        update ${tableName}
+        set
+        <foreach collection="columns" item="item" index="index" separator=",">
+            ${item} = #{values[${index}]}
+        </foreach>
+        ${where}
+    </update>
+
+    <delete id="delete">
+        delete
+        from ${tableName} ${where}
+    </delete>
+</mapper>

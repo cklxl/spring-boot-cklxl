@@ -4,9 +4,11 @@ import com.alibaba.excel.EasyExcel;
 import com.cklxl.filter.Filter;
 import com.cklxl.filter.enums.FldOperation;
 import com.cklxl.filter.enums.FldType;
+import com.google.common.base.CaseFormat;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.changetype.map.KeyValueChange;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +16,12 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        test();
+//        test();
+//        excelImport();
+//        compareMap();
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "CreateTime"));
+        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_UNDERSCORE, "create_time"));
+
     }
 
     public static void excelImport() {

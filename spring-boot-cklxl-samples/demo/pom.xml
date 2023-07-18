@@ -58,11 +58,11 @@
             <artifactId>mybatis-plus-join-boot-starter</artifactId>
             <version>1.4.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
-            <version>4.1.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.javers</groupId>
             <artifactId>javers-core</artifactId>
@@ -77,6 +77,11 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
