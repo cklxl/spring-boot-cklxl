@@ -13,15 +13,36 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Test {
     public static void main(String[] args) {
+//        IntStream.range(0, 100).boxed().forEach(System.out::println);
+
+//        var locales = Stream.of(Locale.getAvailableLocales());
+//        var countryToLocales = locales.collect(Collectors.groupingBy(Locale::getCountry));
+//        System.out.println(countryToLocales.keySet());
+//        System.out.println(countryToLocales.get("CN"));
+
+        var list = List.of(List.of(1, 2), List.of(3, 4), List.of(5, 6, 7));
+        var list2 = list.stream().flatMap(v->v.stream());
+
+        list2.parallel().unordered().limit(3).forEach(System.out::println);
+
+//        System.out.println(list2);
+//        list2.forEach(System.out::println);
+//        list2.forEachOrdered(System.out::println);
+//        Stream.iterate(1.0, p -> p * 2).peek(e -> System.out.println("Fetching " + e)).limit(20).toArray();
 //        test();
 //        excelImport();
 //        compareMap();
-        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "CreateTime"));
-        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_UNDERSCORE, "create_time"));
-
+//        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "CreateTime"));
+//        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "create_time"));
+//        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "create_time"));
+//        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "u9c_code"));
     }
 
     public static void excelImport() {
