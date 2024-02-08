@@ -46,4 +46,5 @@ public class BoundSql implements Serializable {
     public void setParameterMappingList(List<ParameterMapping> parameterMappingList) {
         this.parameterMappingList = parameterMappingList;
     }
+
 }

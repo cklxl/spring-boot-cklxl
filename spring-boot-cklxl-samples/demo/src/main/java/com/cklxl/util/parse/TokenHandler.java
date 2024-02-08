@@ -19,5 +19,7 @@ package com.cklxl.util.parse;
  * @author Clinton Begin
  */
 public interface TokenHandler {
+
     String handleToken(String content);
+
 }

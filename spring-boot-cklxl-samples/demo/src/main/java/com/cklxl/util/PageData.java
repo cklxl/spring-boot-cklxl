@@ -48,11 +48,8 @@ public class PageData<T> {
     }
 
     @JsonCreator
-    public PageData(@JsonProperty("data") List<T> data,
-                    @JsonProperty("page") Long page,
-                    @JsonProperty("size") Long size,
-                    @JsonProperty("pages") Long pages,
-                    @JsonProperty("count") Long count) {
+    public PageData(@JsonProperty("data") List<T> data, @JsonProperty("page") Long page,
+            @JsonProperty("size") Long size, @JsonProperty("pages") Long pages, @JsonProperty("count") Long count) {
         this.data = data;
         this.page = page;
         this.size = size;
@@ -62,13 +59,13 @@ public class PageData<T> {
 
     /**
      * 数据转换
-     *
      * @param mapper
      * @param <R>
      * @return
      */
     public <R> PageData<R> mapData(Function<T, R> mapper) {
-        return new PageData<>(getData().stream().map(mapper).collect(Collectors.toList()),
-                getPage(), getSize(), getPages(), getCount());
+        return new PageData<>(getData().stream().map(mapper).collect(Collectors.toList()), getPage(), getSize(),
+                getPages(), getCount());
     }
+
 }

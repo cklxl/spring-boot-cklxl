@@ -39,8 +39,11 @@
         <spring.version>6.0.10</spring.version>
         <spring-boot.version>3.1.1</spring-boot.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
+
+        <redisson-spring-boot-starter.version>3.26.0</redisson-spring-boot-starter.version>
+
         <!-- excel export and import -->
-        <easyexcel.version>3.3.0</easyexcel.version>
+        <easyexcel.version>3.3.3</easyexcel.version>
         <!-- other -->
         <wiremock.version>2.32.0</wiremock.version>
         <hazelcast-tests.version>4.2.4</hazelcast-tests.version>
@@ -82,6 +85,7 @@
         <module>spring-boot-cklxl-parent</module>
         <module>spring-boot-cklxl-dependencies</module>
         <module>spring-boot-cklxl-starter-easyexcel</module>
+        <module>spring-boot-cklxl-starter-redisson</module>
         <module>spring-boot-cklxl-starter-web</module>
         <module>spring-boot-cklxl-samples/demo</module>
     </modules>
@@ -244,18 +248,18 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-gpg-plugin</artifactId>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <phase>verify</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>sign</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
         <pluginManagement>
             <plugins>

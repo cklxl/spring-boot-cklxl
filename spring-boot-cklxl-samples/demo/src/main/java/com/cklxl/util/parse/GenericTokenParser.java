@@ -20,9 +20,11 @@ package com.cklxl.util.parse;
  */
 public class GenericTokenParser {
 
-    private final String openToken; //开始标记
-    private final String closeToken; //结束标记
-    private final TokenHandler handler; //标记处理器
+    private final String openToken; // 开始标记
+
+    private final String closeToken; // 结束标记
+
+    private final TokenHandler handler; // 标记处理器
 
     public GenericTokenParser(String openToken, String closeToken, TokenHandler handler) {
         this.openToken = openToken;
@@ -33,8 +35,7 @@ public class GenericTokenParser {
     /**
      * 解析${}和#{}
      * @param text
-     * @return
-     * 该方法主要实现了配置文件、脚本等片段中占位符的解析、处理工作，并返回最终需要的数据。
+     * @return 该方法主要实现了配置文件、脚本等片段中占位符的解析、处理工作，并返回最终需要的数据。
      * 其中，解析工作由该方法完成，处理工作是由处理器handler的handleToken()方法来实现
      */
     public String parse(String text) {
@@ -60,23 +61,26 @@ public class GenericTokenParser {
             if (start > 0 && src[start - 1] == '\\') {
                 builder.append(src, offset, start - offset - 1).append(openToken);
                 offset = start + openToken.length();
-            } else {
-                //重置expression变量，避免空指针或者老数据干扰。
+            }
+            else {
+                // 重置expression变量，避免空指针或者老数据干扰。
                 if (expression == null) {
                     expression = new StringBuilder();
-                } else {
+                }
+                else {
                     expression.setLength(0);
                 }
                 builder.append(src, offset, start - offset);
                 offset = start + openToken.length();
                 int end = text.indexOf(closeToken, offset);
-                while (end > -1) {////存在结束标记时
-                    if (end > offset && src[end - 1] == '\\') {//如果结束标记前面有转义字符时
+                while (end > -1) {//// 存在结束标记时
+                    if (end > offset && src[end - 1] == '\\') {// 如果结束标记前面有转义字符时
                         // this close token is escaped. remove the backslash and continue.
                         expression.append(src, offset, end - offset - 1).append(closeToken);
                         offset = end + closeToken.length();
                         end = text.indexOf(closeToken, offset);
-                    } else {//不存在转义字符，即需要作为参数进行处理
+                    }
+                    else {// 不存在转义字符，即需要作为参数进行处理
                         expression.append(src, offset, end - offset);
                         offset = end + closeToken.length();
                         break;
@@ -86,8 +90,9 @@ public class GenericTokenParser {
                     // close token was not found.
                     builder.append(src, start, src.length - start);
                     offset = src.length;
-                } else {
-                    //首先根据参数的key（即expression）进行参数处理，返回?作为占位符
+                }
+                else {
+                    // 首先根据参数的key（即expression）进行参数处理，返回?作为占位符
                     builder.append(handler.handleToken(expression.toString()));
                     offset = end + closeToken.length();
                 }
@@ -99,4 +104,5 @@ public class GenericTokenParser {
         }
         return builder.toString();
     }
+
 }

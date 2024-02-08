@@ -19,39 +19,43 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Test {
-    public static void main(String[] args) {
-//        IntStream.range(0, 100).boxed().forEach(System.out::println);
 
-//        var locales = Stream.of(Locale.getAvailableLocales());
-//        var countryToLocales = locales.collect(Collectors.groupingBy(Locale::getCountry));
-//        System.out.println(countryToLocales.keySet());
-//        System.out.println(countryToLocales.get("CN"));
+    public static void main(String[] args) {
+        // IntStream.range(0, 100).boxed().forEach(System.out::println);
+
+        // var locales = Stream.of(Locale.getAvailableLocales());
+        // var countryToLocales =
+        // locales.collect(Collectors.groupingBy(Locale::getCountry));
+        // System.out.println(countryToLocales.keySet());
+        // System.out.println(countryToLocales.get("CN"));
 
         var list = List.of(List.of(1, 2), List.of(3, 4), List.of(5, 6, 7));
-        var list2 = list.stream().flatMap(v->v.stream());
+        var list2 = list.stream().flatMap(v -> v.stream());
 
         list2.parallel().unordered().limit(3).forEach(System.out::println);
 
-//        System.out.println(list2);
-//        list2.forEach(System.out::println);
-//        list2.forEachOrdered(System.out::println);
-//        Stream.iterate(1.0, p -> p * 2).peek(e -> System.out.println("Fetching " + e)).limit(20).toArray();
-//        test();
-//        excelImport();
-//        compareMap();
-//        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "CreateTime"));
-//        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "create_time"));
-//        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "create_time"));
-//        System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "u9c_code"));
+        // System.out.println(list2);
+        // list2.forEach(System.out::println);
+        // list2.forEachOrdered(System.out::println);
+        // Stream.iterate(1.0, p -> p * 2).peek(e -> System.out.println("Fetching " +
+        // e)).limit(20).toArray();
+        // test();
+        // excelImport();
+        // compareMap();
+        // System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE,
+        // "CreateTime"));
+        // System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE,
+        // "create_time"));
+        // System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL,
+        // "create_time"));
+        // System.out.println(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL,
+        // "u9c_code"));
     }
 
     public static void excelImport() {
         List<List<String>> head = List.of(List.of("姓名"), List.of("年龄"), List.of("性别"));
         List<List<Object>> data = List.of(List.of("张三", 18, "男"), List.of("李四", 19, "女"));
-        EasyExcel.write("D:\\test.xlsx")
-                .sheet("模板")
-                .head(head)
-                .doWrite(data);
+        EasyExcel.write("D:\\test.xlsx").sheet("模板").head(head).doWrite(data);
     }
 
     /**
@@ -63,7 +67,7 @@ public class Test {
         map1.put("年龄", "20");
         map1.put("性别", "男");
         var map2 = new HashMap<String, String>();
-//        map2.put("姓名", "李四");
+        // map2.put("姓名", "李四");
         map2.put("姓名", null);
         map2.put("年龄", "21");
         map2.put("性别", "男");
@@ -154,7 +158,8 @@ public class Test {
         for (Filter filter : filters) {
             if (filter.getIsAnd()) {
                 where.append(" and ");
-            } else {
+            }
+            else {
                 where.append(" or ");
             }
             if (filter.getFldType() == FldType.SINGLE) {
@@ -173,11 +178,13 @@ public class Test {
         if (where.length() > 0) {
             if (where.indexOf(" and ") == 0) {
                 where.delete(0, 5);
-            } else if (where.indexOf(" or ") == 0) {
+            }
+            else if (where.indexOf(" or ") == 0) {
                 where.delete(0, 4);
             }
         }
-//        where.insert(0, "where ");
+        // where.insert(0, "where ");
         return where.toString();
     }
+
 }

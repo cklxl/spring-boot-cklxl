@@ -21,7 +21,6 @@ public interface DynamicMapper {
 
     /**
      * 新增
-     *
      * @param tableInfo
      * @return
      */
@@ -29,7 +28,6 @@ public interface DynamicMapper {
 
     /**
      * 新增批量
-     *
      * @param tableInfo
      * @return
      */
@@ -37,7 +35,6 @@ public interface DynamicMapper {
 
     /**
      * 更新
-     *
      * @param customSql
      * @return
      */
@@ -45,7 +42,6 @@ public interface DynamicMapper {
 
     /**
      * 删除
-     *
      * @param customSql
      * @return
      */
@@ -53,7 +49,6 @@ public interface DynamicMapper {
 
     /**
      * 查询
-     *
      * @param customSql
      * @return
      */
@@ -63,11 +58,11 @@ public interface DynamicMapper {
 
     /**
      * 分页查询
-     *
      * @param customSql
      * @return
      */
     @Select("${customSql}")
     @ResultType(List.class)
     Page<Map<String, Object>> page(@Param("page") Page<Map> page, @Param("customSql") String customSql);
+
 }

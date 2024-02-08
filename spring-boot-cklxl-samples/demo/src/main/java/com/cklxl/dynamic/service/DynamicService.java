@@ -1,6 +1,5 @@
 package com.cklxl.dynamic.service;
 
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public interface DynamicService {
 
     /**
      * 不分页接口
-     *
      * @param db
      * @param customSql
      * @return
@@ -25,7 +23,6 @@ public interface DynamicService {
 
     /**
      * 分页接口
-     *
      * @param db
      * @param customSql
      * @param pageNum
@@ -33,4 +30,5 @@ public interface DynamicService {
      * @return
      */
     Page<Map<String, Object>> page(String db, String customSql, int pageNum, int pageSize);
+
 }

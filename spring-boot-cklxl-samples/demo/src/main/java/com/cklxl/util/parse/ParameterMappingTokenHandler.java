@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParameterMappingTokenHandler implements TokenHandler {
+
     /**
      * 占位符
      */

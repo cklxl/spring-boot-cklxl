@@ -14,9 +14,13 @@ import java.util.Map;
 public class TableInfo {
 
     private String tableName;
+
     private List<String> columns;
+
     private List<JdbcType> types;
+
     private List<Object> values;
+
     private List<List<Object>> batchValues;
 
     public static TableInfo of(String tableName, Map<String, Object> data) {
@@ -52,4 +56,5 @@ public class TableInfo {
         });
         return t;
     }
+
 }

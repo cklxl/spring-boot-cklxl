@@ -23,13 +23,13 @@ public class DynamicServiceImpl implements DynamicService {
     @Autowired
     private DynamicMapper dynamicApiMapper;
 
-    //    @DS("#db")
+    // @DS("#db")
     @Override
     public List<Map<String, Object>> list(String db, String customSql) {
         return dynamicApiMapper.list(customSql);
     }
 
-    //    @DS("#db")
+    // @DS("#db")
     @Override
     public Page<Map<String, Object>> page(String db, String customSql, int pageNum, int pageSize) {
         return dynamicApiMapper.page(new Page(pageNum, pageSize), customSql);

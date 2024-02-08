@@ -29,29 +29,20 @@ public class DemoWeb {
     @GetMapping("/add")
     public void add() {
         dynamicMapper.save(TableInfo.of("demo",
-                Map.of("code", new Date().getTime() + "",
-                        "name", "张三" + new Random().nextInt(1000000),
-                        "age", new Random().nextInt(100),
-                        "birthday", new Date(),
-                        "create_time", new Date(),
-                        "sync_time", new Date(),
-                        "amount", new BigDecimal("12.12")
-                )));
+                Map.of("code", new Date().getTime() + "", "name", "张三" + new Random().nextInt(1000000), "age",
+                        new Random().nextInt(100), "birthday", new Date(), "create_time", new Date(), "sync_time",
+                        new Date(), "amount", new BigDecimal("12.12"))));
     }
 
     @GetMapping("/addbatch")
     public void addBatch() {
         List<Map<String, Object>> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(Map.of("code", new Date().getTime() + "",
-                    "name", "张三" + i,
-                    "age", new Random().nextInt(100),
-                    "birthday", new Date(),
-                    "create_time", new Date(),
-                    "sync_time", new Date(),
-                    "amount", new BigDecimal("12.12")
-            ));
+            list.add(Map.of("code", new Date().getTime() + "", "name", "张三" + i, "age", new Random().nextInt(100),
+                    "birthday", new Date(), "create_time", new Date(), "sync_time", new Date(), "amount",
+                    new BigDecimal("12.12")));
         }
         dynamicMapper.saveBatch(TableInfo.ofList("demo", list));
     }
+
 }
