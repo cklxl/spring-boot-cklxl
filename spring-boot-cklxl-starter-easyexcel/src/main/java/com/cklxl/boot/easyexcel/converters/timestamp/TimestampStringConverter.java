@@ -1,0 +1,64 @@
+/*
+ * Copyright 2022-2030 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.cklxl.boot.easyexcel.converters.timestamp;
+
+import java.sql.Timestamp;
+
+import com.alibaba.excel.converters.Converter;
+import com.alibaba.excel.enums.CellDataTypeEnum;
+import com.alibaba.excel.metadata.GlobalConfiguration;
+import com.alibaba.excel.metadata.data.WriteCellData;
+import com.alibaba.excel.metadata.property.ExcelContentProperty;
+import com.alibaba.excel.util.DateUtils;
+
+/**
+ * 时间转换器
+ *
+ * @author Kun.Chen
+ * @date 2024-2-20 10:24:32
+ */
+public class TimestampStringConverter implements Converter<Timestamp> {
+
+    @Override
+    public Class<?> supportJavaTypeKey() {
+        return Timestamp.class;
+    }
+
+    @Override
+    public CellDataTypeEnum supportExcelTypeKey() {
+        return CellDataTypeEnum.STRING;
+    }
+
+    @Override
+    public WriteCellData<?> convertToExcelData(Timestamp value, ExcelContentProperty contentProperty,
+            GlobalConfiguration globalConfiguration) {
+        WriteCellData cellData = new WriteCellData();
+        String cellValue;
+        if (contentProperty == null || contentProperty.getDateTimeFormatProperty() == null) {
+            cellValue = DateUtils.format(value.toLocalDateTime(), null, globalConfiguration.getLocale());
+        }
+        else {
+            cellValue = DateUtils.format(value.toLocalDateTime(),
+                    contentProperty.getDateTimeFormatProperty().getFormat(), globalConfiguration.getLocale());
+        }
+        cellData.setType(CellDataTypeEnum.STRING);
+        cellData.setStringValue(cellValue);
+        cellData.setData(cellValue);
+        return cellData;
+    }
+
+}
