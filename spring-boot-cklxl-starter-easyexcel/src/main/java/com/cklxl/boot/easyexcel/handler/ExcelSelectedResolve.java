@@ -69,8 +69,8 @@ public class ExcelSelectedResolve {
                 if (dynamicSelectSource != null && dynamicSelectSource.length > 0) {
                     return dynamicSelectSource;
                 }
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                log.error("解析动态下拉框数据异常", e);
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+                log.error("解析动态下拉框数据异常", ex);
             }
         }
         return null;

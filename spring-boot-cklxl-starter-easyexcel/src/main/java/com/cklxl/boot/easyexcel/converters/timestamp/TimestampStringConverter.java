@@ -26,10 +26,10 @@ import com.alibaba.excel.metadata.property.ExcelContentProperty;
 import com.alibaba.excel.util.DateUtils;
 
 /**
- * 时间转换器
+ * 时间转换器.
  *
- * @author Kun.Chen
- * @date 2024-2-20 10:24:32
+ * @author Chen Kun
+ * @since 2024-2-20 10:24:32
  */
 public class TimestampStringConverter implements Converter<Timestamp> {
 
@@ -44,16 +44,13 @@ public class TimestampStringConverter implements Converter<Timestamp> {
     }
 
     @Override
-    public WriteCellData<?> convertToExcelData(Timestamp value, ExcelContentProperty contentProperty,
-            GlobalConfiguration globalConfiguration) {
+    public WriteCellData<?> convertToExcelData(Timestamp value, ExcelContentProperty contentProperty, GlobalConfiguration globalConfiguration) {
         WriteCellData cellData = new WriteCellData();
         String cellValue;
         if (contentProperty == null || contentProperty.getDateTimeFormatProperty() == null) {
             cellValue = DateUtils.format(value.toLocalDateTime(), null, globalConfiguration.getLocale());
-        }
-        else {
-            cellValue = DateUtils.format(value.toLocalDateTime(),
-                    contentProperty.getDateTimeFormatProperty().getFormat(), globalConfiguration.getLocale());
+        } else {
+            cellValue = DateUtils.format(value.toLocalDateTime(), contentProperty.getDateTimeFormatProperty().getFormat(), globalConfiguration.getLocale());
         }
         cellData.setType(CellDataTypeEnum.STRING);
         cellData.setStringValue(cellValue);

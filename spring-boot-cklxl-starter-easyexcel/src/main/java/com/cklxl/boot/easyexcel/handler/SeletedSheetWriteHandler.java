@@ -24,7 +24,12 @@ import com.alibaba.excel.write.metadata.holder.WriteSheetHolder;
 import com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;
 import lombok.AllArgsConstructor;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.DataValidation;
+import org.apache.poi.ss.usermodel.DataValidationConstraint;
+import org.apache.poi.ss.usermodel.DataValidationHelper;
+import org.apache.poi.ss.usermodel.Name;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddressList;
 
 @AllArgsConstructor
@@ -49,7 +54,7 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
         Sheet sheet = writeSheetHolder.getSheet();
         Workbook workbook = writeWorkbookHolder.getWorkbook();
         DataValidationHelper helper = sheet.getDataValidationHelper();
-        selectedMap.forEach((k, v) -> {
+        this.selectedMap.forEach((k, v) -> {
             if (Objects.isNull(v.getSource())) {
                 return;
             }
@@ -82,8 +87,7 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
                 }
                 // 将刚才设置的sheet引用到你的下拉列表中
                 constraint = helper.createFormulaListConstraint(sheetName);
-            }
-            else {
+            } else {
                 // 设置下拉列表的值
                 constraint = helper.createExplicitListConstraint(v.getSource());
             }
@@ -92,8 +96,7 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
             // 阻止输入非下拉选项的值
             if (validation instanceof HSSFDataValidation) {
                 validation.setSuppressDropDownArrow(false);
-            }
-            else {
+            } else {
                 validation.setSuppressDropDownArrow(true);
                 validation.setShowErrorBox(true);
             }
@@ -105,7 +108,8 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
     }
 
     /**
-     * 返回excel列标A-Z-AA-ZZ
+     * 返回excel列标A-Z-AA-ZZ.
+     *
      * @param num 列数
      * @return java.lang.String
      */
