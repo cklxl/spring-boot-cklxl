@@ -18,10 +18,11 @@ package com.cklxl.boot.easyexcel.handler;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.cklxl.boot.easyexcel.annotations.ExcelSelected;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import com.cklxl.boot.easyexcel.annotations.ExcelSelected;
 
 @Slf4j
 @Getter
@@ -29,17 +30,17 @@ import lombok.extern.slf4j.Slf4j;
 public class ExcelSelectedResolve {
 
     /**
-     * 下拉内容
+     * 下拉内容.
      */
     private String[] source;
 
     /**
-     * 设置下拉框的起始行，默认为第二行
+     * 设置下拉框的起始行，默认为第二行.
      */
     private Integer firstRow;
 
     /**
-     * 设置下拉框的结束行，默认为最后一行
+     * 设置下拉框的结束行，默认为最后一行.
      */
     private Integer lastRow;
 
@@ -69,7 +70,9 @@ public class ExcelSelectedResolve {
                 if (dynamicSelectSource != null && dynamicSelectSource.length > 0) {
                     return dynamicSelectSource;
                 }
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+            }
+            catch (InstantiationException | IllegalAccessException | NoSuchMethodException
+                    | InvocationTargetException ex) {
                 log.error("解析动态下拉框数据异常", ex);
             }
         }

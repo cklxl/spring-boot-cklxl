@@ -38,7 +38,7 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
     private final Map<Integer, ExcelSelectedResolve> selectedMap;
 
     /**
-     * Called before create the sheet
+     * Called before create the sheet.
      */
     @Override
     public void beforeSheetCreate(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder) {
@@ -46,7 +46,7 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
     }
 
     /**
-     * Called after the sheet is created
+     * Called after the sheet is created.
      */
     @Override
     public void afterSheetCreate(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder) {
@@ -87,7 +87,8 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
                 }
                 // 将刚才设置的sheet引用到你的下拉列表中
                 constraint = helper.createFormulaListConstraint(sheetName);
-            } else {
+            }
+            else {
                 // 设置下拉列表的值
                 constraint = helper.createExplicitListConstraint(v.getSource());
             }
@@ -96,7 +97,8 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
             // 阻止输入非下拉选项的值
             if (validation instanceof HSSFDataValidation) {
                 validation.setSuppressDropDownArrow(false);
-            } else {
+            }
+            else {
                 validation.setSuppressDropDownArrow(true);
                 validation.setShowErrorBox(true);
             }
@@ -109,7 +111,6 @@ public class SeletedSheetWriteHandler implements SheetWriteHandler {
 
     /**
      * 返回excel列标A-Z-AA-ZZ.
-     *
      * @param num 列数
      * @return java.lang.String
      */
